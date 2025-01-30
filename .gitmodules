@@ -3,3 +3,8 @@
 	url = /lustre03/project/rrg-pbellec/ria-beluga/alias/repronim/containers
 	datalad-id = b02e63c2-62c1-11e9-82b0-52540040489c
 	datalad-url = "ria+file:///lustre03/project/rrg-pbellec/ria-beluga#~repronim/containers"
+[submodule "sourcedata/floc"]
+	path = sourcedata/floc
+	url = /lustre03/project/rrg-pbellec/ria-beluga/alias/cneuromod.floc.raw
+	datalad-id = a1aba9da-6122-4824-948f-241b0a1f4886
+	datalad-url = "ria+file:///lustre03/project/rrg-pbellec/ria-beluga#~cneuromod.floc.raw"
