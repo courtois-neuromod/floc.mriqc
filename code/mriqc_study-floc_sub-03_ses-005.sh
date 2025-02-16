@@ -14,7 +14,7 @@
 
 
 export LOCAL_DATASET=$SLURM_TMPDIR/${SLURM_JOB_NAME//-/}/
-flock --verbose /lustre03/project/rrg-pbellec/ria-beluga/alias/cneuromod.floc.mriqc/.datalad_lock datalad clone ria+file:///lustre03/project/rrg-pbellec/ria-beluga/alias/cneuromod.floc.mriqc/ $LOCAL_DATASET
+flock --verbose /lustre03/project/rrg-pbellec/ria-beluga/alias/cneuromod.floc.mriqc/.datalad_lock datalad clone ria+file:///lustre03/project/rrg-pbellec/ria-beluga#~cneuromod.floc.mriqc $LOCAL_DATASET
 cd $LOCAL_DATASET
 git-annex enableremote ria-beluga-storage
 datalad get -s ria-beluga-storage -J 4 -n -r -R1 . # get sourcedata/* containers
@@ -25,7 +25,7 @@ git submodule foreach --recursive git annex dead here
 git submodule foreach git annex enableremote ria-beluga-storage
 git checkout -b $SLURM_JOB_NAME
 
-datalad containers-run -m 'mriqc_sub-03/ses-005' -n containers/bids-mriqc --input sourcedata/floc/sub-03/ses-005/fmap/ --input sourcedata/floc/sub-03/ses-005/func/ --output . -- -w workdir/ --participant-label 03 --session-id 005 --omp-nthreads 8 --nprocs 8 -m bold --mem_gb 32 --no-sub sourcedata/floc ./ participant 
+datalad containers-run -m 'mriqc_sub-03/ses-005' -n bids-mriqc --input sourcedata/floc/sub-03/ses-005/fmap/ --input sourcedata/floc/sub-03/ses-005/func/ --output . -- -w workdir/ --participant-label 03 --session-id 005 --omp-nthreads 8 --nprocs 8 -m bold --mem_gb 32 --no-sub sourcedata/floc ./ participant 
 mriqc_exitcode=$?
 
 flock --verbose /lustre03/project/rrg-pbellec/ria-beluga/alias/cneuromod.floc.mriqc/.datalad_lock datalad push -d ./ --to origin
